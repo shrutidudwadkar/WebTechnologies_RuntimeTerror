@@ -36,8 +36,10 @@ router.get('/welcome', function(req, res, next) {
 });
 
 /* Fetch the login page */
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
+router.post('/login', function(req, res, next) {
+  /*res.render('login', { title: 'Login' } );
+   */
+  user.getUser(req,res)
 });
 
 /* Submit the registration page */
