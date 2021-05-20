@@ -33,7 +33,7 @@
 
 
         <div class="searchBar">
-            <form id="searchForm" onsubmit="searchAnimal()">
+            <form id="searchForm" onsubmit="searchAnimal()" method="POST">
             <input id="location_img"  type="image" src="../images/location.png" alt="Location">
 
                 <select id="location" name="location">
@@ -64,7 +64,7 @@
 <div id="loginModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="close_popup_modal('loginModal');">&times;</span>
-        <form id="loginForm" onsubmit="loginUser()" enctype="multipart/form-data" method="POST">
+        <form id="loginForm" onsubmit="loginUser()" method="POST">
             <h2>Login</h2><br>
             <div class="textField">
                 <input type="text" name="email1" id="email1" placeholder="Email">

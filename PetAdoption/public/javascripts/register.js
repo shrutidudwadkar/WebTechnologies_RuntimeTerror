@@ -24,7 +24,9 @@ function onRegister() {
         success: function (dataR) {
             // close the current registration modal
             close_popup_modal('registerModal')
-            popup_modal('successModal', "You are now successfully registered.")
+            popup_modal('successModal', "You are now successfully registered. Continue to Login now")
+            popup_modal('loginModal')
+
 
         },
         error: function (xhr, status, error) {
