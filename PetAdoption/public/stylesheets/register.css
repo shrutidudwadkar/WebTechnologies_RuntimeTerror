@@ -1,0 +1,114 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color:#6abadeba;
+    font-family: 'Calibri';
+
+    background-image: url("https://listovative.com/wp-content/uploads/2014/08/Cute-dogs-hd-download-4.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.RegistrationPage .textField{
+    position: relative;
+}
+
+.RegistrationPage .user{
+    position: relative;
+}
+
+.RegistrationPage .textField input{
+    width: 100%;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: #fff;
+    letter-spacing: 0.062rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-bottom: 0.065rem solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.RegistrationPage .textField label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.RegistrationPage .user input{
+    width: 70%;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: #fff;
+    letter-spacing: 0.062rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-bottom: 0.065rem solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.RegistrationPage .user label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+
+
+.RegistrationPage{
+
+
+    position: center;
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+    margin: auto;
+    margin: 100px 0px 0px 480px;
+    padding: 30px;
+    border-radius: 15px ;
+    #background: transparent;
+    background-color: #000000;
+    background: rgba(0,0,0,0.6);
+
+}
+h3{
+    text-align: center;
+    color: #fff;
+    #padding: 20px;
+}
+span{
+    color: #fff;
+    font-size: 17px;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+RegistrationPage input [type=submit]{
+    color: #fff;
+    cursor: pointer;
+    display: block;
+}
+
+a1{
+    font-size: 1rem;
+    color: #fff;
+}

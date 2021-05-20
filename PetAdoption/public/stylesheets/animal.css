@@ -1,0 +1,157 @@
+body {
+    font-family: Okra,Helvetica,sans-serif;
+    color: black;
+}
+
+.container1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+}
+
+
+p {
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+strong {
+    font-weight: bold;
+}
+.wrapper {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 940px;
+}
+
+
+.left-column {
+    width: 65%;
+    position: relative;
+}
+
+.right-column {
+    width: 35%;
+    margin-top: auto;
+}
+
+.left-column img {
+    width: 80%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.left-column img.active {
+    opacity: 1;
+}
+
+.description {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+
+.description h1 {
+    font-weight: 300;
+    font-size: 52px;
+    color: #43484D;
+    letter-spacing: -2px;
+}
+.description p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+
+.container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+}
+
+.bottom-row {
+    width: 35%;
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.comment-section h1 {
+    font-weight: 300;
+    font-size: 30px;
+    color: #43484D;
+    letter-spacing: -2px;
+}
+
+.comment-section p1 {
+    font-size: 16px;
+    font-weight: 300;
+    color: #43484D;
+    line-height: 24px;
+}
+
+.comment-section p2 {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+
+.comment-section span {
+    font-size: 10px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+
+canvas{
+    width: 500px;
+    height: 300px;
+    border: 1px solid;
+}
+
+/* header related */
+header h3 {
+    font-weight: bold;
+    font-size: 40px;
+    position: relative;
+    text-transform: uppercase;
+
+}
+
+header {
+    height: 120px;
+    color: black;
+}
+
+.heading h1 {
+    float: left;
+    margin-top: 32px;
+}
+
+.links nav {
+    float: right;
+    padding-block: 15px;
+}
+
+.links nav ul li {
+    float: left;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.links nav ul li a {
+    display: block;
+    margin-right: 20px;
+    paddding: 0 8px;
+    font-family: Okra,Helvetica,sans-serif;
+    font-size: 20px;
+}
+.heading {
+    float: left;
+    padding-left: 20px;
+}

@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f1f1;
+    padding: 20px;
+    font-family: Arial;
+}
+
+/* Center website */
+.main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 50px;
+    word-break: break-all;
+}
+
+.row {
+    margin: 10px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+    padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 33.33%;
+    display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Content */
+.content {
+    background-color: white;
+    padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+    display: block;
+}
+
+.filters {
+    display: inline-block;
+
+}
+
+
+
+/*header related */
+header h3 {
+    font-weight: bold;
+    font-size: 40px;
+    position: relative;
+    text-transform: uppercase;
+
+}
+
+header {
+    height: 120px;
+    color: black;
+}
+
+.heading h1 {
+    float: left;
+    margin-top: 32px;
+}
+
+.links nav {
+    float: right;
+    padding-block: 15px;
+}
+
+.links nav ul li {
+    float: left;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.links nav ul li a {
+    display: block;
+    margin-right: 20px;
+    paddding: 0 8px;
+    font-family: Okra,Helvetica,sans-serif;
+    font-size: 20px;
+}
+.heading {
+    float: left;
+    padding-left: 20px;
+}

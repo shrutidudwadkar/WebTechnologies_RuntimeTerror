@@ -1,0 +1,78 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color:#6abadeba;
+    font-family: Okra,Helvetica,sans-serif;
+    background-image: url("https://listovative.com/wp-content/uploads/2014/08/Cute-dogs-hd-download-4.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.loginPage .textField{
+    position: relative;
+}
+
+.loginPage .textField input{
+    width: 100%;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: #fff;
+    letter-spacing: 0.062rem;
+    margin-bottom: 1.875rem;
+    border: none;
+    border-bottom: 0.065rem solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.loginPage .textField label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.625rem 0;
+    font-size: 1rem;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+
+.loginPage{
+
+    position: center;
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+    margin: auto;
+    margin: 100px 0px 0px 480px;
+    padding: 30px;
+    border-radius: 15px ;
+    #background: transparent;
+
+
+}
+h2{
+    text-align: center;
+    color: #fff;
+    #padding: 20px;
+}
+span{
+    color: #fff;
+    font-size: 17px;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+loginPage input [type=submit]{
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    border-radius: 0.6rem;
+}
