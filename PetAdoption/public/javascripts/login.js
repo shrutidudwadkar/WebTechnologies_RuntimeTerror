@@ -1,19 +1,23 @@
 function loginUser() {
-    event.preventDefault();
-    event.stopImmediatePropagation();
+    let formArray= $("form").serializeArray();
+    let data={};
+    for (let index in formArray){
+        data[formArray[index].name]= formArray[index].value;
+    }
 
-    var myForm = document.getElementById('loginForm');
-    var formData = new FormData(myForm);
+    data = {
+        email: data.email1,
+        password: data.password1,
+    }
 
-    console.log(formData)
+
+    console.log(data)
 
     $.ajax({
         url:  '/login' ,
-        data: formData,
+        data: data,
         dataType: 'json',
         type: 'POST',
-        processData: false,
-        contentType: false,
         success: function (dataR) {
             var ret = dataR;
             close_popup_modal('loginModal')
@@ -22,10 +26,10 @@ function loginUser() {
 
         },
         error: function (xhr, status, error) {
-
-            alert('Error: ' + error.message);
+            popup_modal('successModal', "Invalid username or password. Please try again")
+            // alert('Error: ' + error.message);
         }
     });
 
-    return false;
+    event.preventDefault();
 }

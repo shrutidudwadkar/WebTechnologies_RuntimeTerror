@@ -38,18 +38,26 @@ exports.registerUser = function (req, res) {
 };
 
 exports.getUser = function (req, res) {
-
+    console.log("inside console")
     var userData = req.body;
     if (userData == null) {
         res.status(403).send('No data sent!')
     }
     try {
-        User.findOne({email: userData.email}, 'email', function (err, userFound) {
+        User.findOne({email: userData.email}, 'email password', function (err, userFound) {
             if (err) {
                 return res.send(500, err);
             } else {
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(userFound));
+                console.log("form",userData.password)
+                console.log("DB",userFound.password)
+                if (userData.password === userFound.password) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(userFound));
+                } else {
+                    console.log("error")
+                    res.status(401).send("Invalid username or password")
+                }
+
             }
         });
     } catch (e) {
