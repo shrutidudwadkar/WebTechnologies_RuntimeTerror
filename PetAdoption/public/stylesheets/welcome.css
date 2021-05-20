@@ -223,23 +223,9 @@ header nav ul li a {
 }
 
 
-.image-container {
-
-    width: 1800px;
-    background-color: #f8fafa;
-    height: 500px;
-    clear: both;
-    position: relative;
-    -webkit-transition: left 2s;
-    -moz-transition: left 2s;
-    -o-transition: left 2s;
-    transition: left 2s;
-
-}
-
 .slider {
-    width:600px;
-    height: 500px;
+    width: 500px;
+    height: 400px;
     background-color: #f8fafa;
     margin-left: auto;
     margin-right: auto;
@@ -248,35 +234,46 @@ header nav ul li a {
     overflow: hidden;
     border-radius: 2.0rem;
 }
-.slide {
-    margin: 0px;
-    position: relative;
-    width: 600px;
-    height: 500px;
 
+.image-container {
+    width: 2000px;
+    background-color: #f8fafa;
+    height: 400px;
+    clear: both;
+    position: relative;
+    -webkit-transition: left 2s;
+    -moz-transition: left 2s;
+    -o-transition: left 2s;
+    transition: left 2s;
 }
 
+.slide {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
 #slide-1:target ~ .image-container {
     left: 0px;
 }
-
 #slide-2:target ~ .image-container {
-    left: -600px;
+    left: -500px;
 }
-
 #slide-3:target ~ .image-container {
-    left: -1800px;
+    left: -1000px;
 }
 
+#slide-4:target ~ .image-container {
+    left: -1500px;
+}
 
 .buttons {
     position: relative;
-    top: -50px;
+    top: -20px;
 }
-
 .buttons a {
     display: inline-block;
-    height: 5px;
+    height: 15px;
     width: 15px;
     border-radius: 50px;
     background-color: #f8fafa;
