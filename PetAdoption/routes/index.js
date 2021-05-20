@@ -1,0 +1,73 @@
+var express = require('express');
+var router = express.Router();
+
+var user = require('../controllers/user');
+var animal = require('../controllers/animal');
+
+var multer = require('multer');
+
+// storage defines the storage options to be used for file upload with multer
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/');
+  },
+  filename: function (req, file, cb) {
+    var original = file.originalname;
+    var file_extension = original.split(".");
+    // Make the file name the date + the file extension
+    filename =  Date.now() + '.' + file_extension[file_extension.length-1];
+    cb(null, filename);
+  }
+});
+var upload = multer({ storage: storage });
+
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Pet Adoption' });
+});
+/* GET home page using localhost:3000/index. */
+router.get('/index', function(req, res, next) {
+  res.render('index', { title: 'Pet Adoption' });
+});
+/* Fetch the welcome page */
+router.get('/welcome', function(req, res, next) {
+  res.render('welcome', { title: 'Pet Adoption' });
+});
+
+/* Fetch the login page */
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login' });
+});
+
+/* Submit the registration page */
+router.post('/register', function(req, res) {
+  user.registerUser(req,res);
+});
+
+
+/* Fetch the animal page */
+router.get('/animal', function(req, res, next) {
+  res.render('animal', { title: 'Animal Page'});
+});
+
+/* Add animal */
+router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
+  console.log(req);
+  animal.insertAnimal(req, res)
+});
+
+
+/* Fetch the search page */
+router.get('/search', function(req, res, next) {
+  animal.fetchAllAnimals(req, res);
+});
+
+
+
+router.get('/add', function(req, res, next) {
+  res.render('add', { title: 'Add a new Character to the DB' });
+});
+
+
+module.exports = router;

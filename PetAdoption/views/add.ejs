@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/add.js"></script>
+
+</head>
+<body>
+<h1><%= title %></h1>
+
+<div>
+    <%- include('header') %>
+</div>
+<div id="addAnimalModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('addAnimalModal');">&times;</span>
+        <form id="addAnimalForm" onsubmit="onSubmit()" enctype="multipart/form-data" method="POST">
+            <h2>Add Animal</h2><br>
+            <div class="textField">
+                <input type="text" name="name" id="name" placeholder="Name">
+            </div>
+            <div class="selectBox">
+                <select id="petType" name="petType">
+                    <option value="" selected>Animal type</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Horse">Horse</option>
+                    <option value="Hamster">Hamster</option>
+                </select>
+            </div>
+            <br>
+            <div class="selectBox">
+                <select id="town" name="town">
+                    <option value="" selected>Location</option>
+                    <option value="Sheffield">Sheffield</option>
+                    <option value="London">London</option>
+                    <option value="Manchester">Manchester</option>
+                </select>
+            </div>
+            <br>
+            <div class="textField">
+                <input type="text" name="tags" id="tags" placeholder="Enter tags separated with comma">
+            </div>
+            <div>
+                <input type="file" id="animalImage" name="animalImage" accept="image/*" required>
+            </div>
+            <br>
+            <input type="submit" class="button" name="addAnimal" id="addAnimal" value="Add Animal"/>
+
+        </form>
+        <div id="results" style="margin-top:30px"></div>
+    </div>
+</div>
+
+
+<div id="results" style="margin-top:30px"></div>
+
+</body>
+</html>

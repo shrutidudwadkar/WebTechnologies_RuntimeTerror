@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> <%= title %> </title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/welcome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/welcome.js"></script>
+    <script src="/javascripts/animal.js"></script>
+    <script src="/javascripts/login.js"></script>
+    <script src="/javascripts/search.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div id="image">
+    <header>
+        <div>
+            <nav>
+                <ul>
+                    <li><a id="loginId" onclick="popup_modal('loginModal');">Login</a></li>
+                    <li><a id="registerId" onclick="popup_modal('registerModal');">Register</a></li>
+                    <li><a id="addAnimalId" onclick="popup_modal('addAnimalModal');">Add animal</a></li>
+                    <li><a>Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        <h1>PET ADOPTION</h1>
+        <h3><strong>Come,</strong> adopt us.</h3>
+
+
+        <div class="searchBar">
+            <form id="searchForm" onsubmit="searchAnimal()">
+            <input id="location_img"  type="image" src="../images/location.png" alt="Location">
+
+                <select id="location" name="location">
+                    <option value="" selected>Location</option>
+                    <option value="Sheffield">Sheffield</option>
+                    <option value="London">London</option>
+                    <option value="Manchester">Manchester</option>
+                </select>
+
+                <select id="animalType" name="animalType">
+                    <option value="" selected>Animal type</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Horse">Horse</option>
+                    <option value="Hamster">Hamster</option>
+
+                </select>
+            <input id="tags1" name="tags1" class="form-control" type="text" placeholder="Enter a description" aria-label="Search">
+            <input id="magnify_glass" type="image" src="../images/magnify_glass.png" alt="Search">
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- The Log in modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('loginModal');">&times;</span>
+        <form id="loginForm" onsubmit="loginUser()" enctype="multipart/form-data" method="POST">
+            <h2>Login</h2><br>
+            <div class="textField">
+                <input type="text" name="email" id="email1" placeholder="Email">
+            </div>
+            <div class="textField">
+                <input type="password" name="password" id="password1" placeholder="Password">
+            </div>
+
+            <input type="submit" class="button" name="login" id="login" value="Log In"/>
+            <div class="textField">
+                <br>
+                <a id="register" onclick="redirectToRegister('registerModal');">New user? Register</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--The registration popup modal -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('registerModal');">&times;</span>
+        <form id="registrationForm" onsubmit="onRegister()" method="post">
+            <h2>Register</h2>
+            <div class="selectBox">
+                <select id="title" name="title">
+                    <option value="" selected>Title</option>
+                    <option value="Mr" label="Mr">Mr</option>
+                    <option value="Mrs" label="Mrs">Mrs</option>
+                    <option value="Ms" label="Ms">Ms</option>
+                    <option value="Miss" label="Miss">Miss</option>
+                </select>
+            </div>
+            <br>
+            <div class="textField">
+                <input type="text" name="firstname" id="firstname" placeholder="Firstname">
+            </div>
+            <div class="textField">
+                <input type="text" name="lastname" id="lastname" placeholder="Lastname">
+            </div>
+            <div class="textField">
+                <input type="text" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="textField">
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" placeholder="Phone number">
+            </div>
+            <div class="textField">
+                <input type="password" name="password" id="password" placeholder="Password">
+            </div>
+            <input type="submit" class="button" name="register" id="registerUserId" value="Register">
+        </form>
+    </div>
+</div>
+
+<!-- Add animal modal -->
+<div id="addAnimalModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('addAnimalModal');">&times;</span>
+        <form id="addAnimalForm" onsubmit="addAnimalInfo()" enctype="multipart/form-data" method="POST">
+            <h2>Add Animal</h2><br>
+            <div class="textField">
+                <input type="text" name="name" id="name" placeholder="Name">
+            </div>
+            <div class="selectBox">
+                <select id="petType" name="petType">
+                    <option value="" selected>Animal type</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Horse">Horse</option>
+                    <option value="Hamster">Hamster</option>
+                </select>
+            </div>
+            <br>
+            <div class="selectBox">
+                <select id="town" name="town">
+                    <option value="" selected>Location</option>
+                    <option value="Sheffield">Sheffield</option>
+                    <option value="London">London</option>
+                    <option value="Manchester">Manchester</option>
+                </select>
+            </div>
+            <br>
+            <div class="textField">
+                <input type="text" name="tags" id="tags" placeholder="Enter tags separated with comma">
+            </div>
+           <div>
+                <input type="file" id="animalImage" name="animalImage" accept="image/*" required>
+            </div>
+            <br>
+            <input type="submit" class="button" name="addAnimal" id="addAnimal" value="Add Animal"/>
+
+        </form>
+    </div>
+</div>
+
+
+<!-- Success modal -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('successModal');">&times;</span>
+            <div class="textField">
+                <p class="message" id="message"></p>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <h2>Our little cutesies</h2>
+    <div class="slider">
+        <span id="slide-1"></span>
+        <span id="slide-2"></span>
+        <span id="slide-3"></span>
+        <div class="image-container">
+            <img src="../images/pet1.jpg" class="slide"/>
+            <img src="../images/pet3.jpg" class="slide"/>
+            <img src="../images/pet4.jpg" class="slide"/>
+        </div>
+        <div class="buttons">
+            <a href="#slide-1"></a>
+            <a href="#slide-2"></a>
+            <a href="#slide-3"></a>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<footer>
+    <div class="footer">
+        <div id="footer-info">
+            <p>Copyright 2021 PetAdoption. All rights reserved.</p>
+            <p>Terms of Service | Privacy</p>
+        </div>
+        <div id="footer-links">
+            <nav>
+                <ul>
+                    <li>About US</li>
+                    <li>Meet the Team</li>
+                    <li>What We Do</li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</footer>
+
+</body>
+</html>

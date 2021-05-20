@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/register.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/javascripts/register.js"></script>
+</head>
+<body>
+<div class="RegistrationPage">
+    <form  id="registrationForm" onsubmit="onSubmit('/register')">
+        <h2>Register</h2><br>
+        <div class="user" style="float:left;">
+            <select name="title" id="title">
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Ms">Ms</option>
+                <option value="Miss">Miss</option>
+            </select>
+        </div>
+        <div style="clear:both;">&nbsp;</div>
+        <div class="user" style="float:left;">
+            <input type="text" name="firstname" id="firstname">
+            <label>First Name</label>
+        </div>
+        <div class="user" style="float:left;">
+            <input type="text" name="lastname" id="lastname">
+            <label>Last Name</label>
+        </div>
+        <div style="clear:both;">&nbsp;</div>
+        <div class="textField">
+            <input type="text" name="email" id="email">
+            <label>Email Address</label>
+        </div>
+        <div style="clear:both;">&nbsp;</div>
+        <div class="textField">
+
+        </div>
+
+        <div class="user" style="float:left;">
+            <input type="tel" name="phone" id="phone" pattern="[0-9]{10}">
+            <label>Contact Number</label>
+        </div>
+        <div style="clear:both;">&nbsp;</div>
+        <div class="textField">
+            <input type="password" name="password" id="password">
+            <label>Enter new password</label>
+        </div>
+        <br>
+        <input type="submit" name="login" id="login" value="Register">
+    </form>
+</div>
+
+<div id="results" style="margin-top:30px"></div>
+</body>
+</html>
