@@ -1,0 +1,24 @@
+<div class="searchBar">
+    <form id="searchForm" action="/search_animal" method="POST">
+        <input id="location_img" type="image" src="../images/location.png" alt="Location">
+
+        <select id="location" name="location">
+            <option value="" selected>Location</option>
+            <option value="Sheffield">Sheffield</option>
+            <option value="London">London</option>
+            <option value="Manchester">Manchester</option>
+        </select>
+
+        <select id="animalType" name="animalType">
+            <option value="" selected>Animal type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Horse">Horse</option>
+            <option value="Hamster">Hamster</option>
+
+        </select>
+        <input id="tags1" name="tags1" class="form-control" type="text" placeholder="Enter a description"
+               aria-label="Search">
+        <input id="magnify_glass" type="image" src="../images/magnify_glass.png" alt="Search">
+    </form>
+</div>

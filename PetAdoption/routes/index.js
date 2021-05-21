@@ -54,7 +54,7 @@ router.post('/register', function(req, res) {
 /* Fetch the animal page */
 router.post('/animal', function(req, res, next) {
   //res.render('animal', { title: 'Animal Page'});
-  console.log("in index.js")
+  console.log("in index.js", req.body)
   animal.displayAnimal(req,res)
 });
 

@@ -1,0 +1,40 @@
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('registerModal');">&times;</span>
+        <form id="registrationForm" onsubmit="onRegister()" method="post">
+            <h2>Register</h2>
+            <div class="userType">
+                <input type="radio" name="userType" value="stdUser">Standard User
+                <input type="radio" name="userType" value="adminUser">Admin User
+            </div>
+            <br>
+            <br>
+            <div class="selectBox">
+                <select id="title" name="title">
+                    <option value="" selected>Title</option>
+                    <option value="Mr" label="Mr">Mr</option>
+                    <option value="Mrs" label="Mrs">Mrs</option>
+                    <option value="Ms" label="Ms">Ms</option>
+                    <option value="Miss" label="Miss">Miss</option>
+                </select>
+            </div>
+            <br>
+            <div class="textField">
+                <input type="text" name="firstname" id="firstname" placeholder="Firstname">
+            </div>
+            <div class="textField">
+                <input type="text" name="lastname" id="lastname" placeholder="Lastname">
+            </div>
+            <div class="textField">
+                <input type="text" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="textField">
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" placeholder="Phone number">
+            </div>
+            <div class="textField">
+                <input type="password" name="password" id="password" placeholder="Password">
+            </div>
+            <input type="submit" class="button" name="register" id="registerUserId" value="Register">
+        </form>
+    </div>
+</div>

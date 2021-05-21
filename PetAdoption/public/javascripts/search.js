@@ -1,4 +1,3 @@
-
 function searchAnimal() {
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -46,7 +45,7 @@ function getAnimalInfo() {
     var animalId = document.getElementById("animalId").value
     $.ajax({
         url: '/animal',
-        data: {"animalId":animalId},
+        data: {"animalId": animalId},
         dataType: 'json',
         type: 'POST',
         success: function (data) {
@@ -64,3 +63,18 @@ function getAnimalInfo() {
     return false;
 
 }
+
+// Adding first line as the id isn't created yet
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('animalImageId').addEventListener('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: '/animal',
+            data: {"animalId": document.getElementById('animalId').value},
+            success: function (data) {
+                console.log(data);
+                $("html").html(data);
+            }
+        });
+    }, false);
+});

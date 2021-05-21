@@ -1,0 +1,21 @@
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('loginModal');">&times;</span>
+        <form id="loginForm" onsubmit="loginUser()" method="POST">
+            <h2>Login</h2><br>
+            <div class="textField">
+                <input type="text" name="email1" id="email1" placeholder="Email">
+            </div>
+            <div class="textField">
+                <input type="password" name="password1" id="password1" placeholder="Password">
+            </div>
+
+            <input type="submit" class="button" name="login" id="login" value="Log In"/>
+            <div class="textField">
+                <br>
+                <a id="register" onclick="redirectToRegister('registerModal');">New user? Register</a>
+            </div>
+
+        </form>
+    </div>
+</div>
