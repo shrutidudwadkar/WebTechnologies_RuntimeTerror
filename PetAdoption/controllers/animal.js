@@ -64,14 +64,17 @@ exports.displayAnimal = function (req, res) {
 exports.fetchAllAnimals = function (req, res) {
 
     var animalData = req.body;
-    var filterData = {
-        "a":animalData.location,
-    }
+    var filterData = { }
+       if(animalData.location != null && animalData.location != "")
+           filterData["town"] = animalData.location
+        if (animalData.animalType != null && animalData.animalType != "")
+            filterData["petType"] = animalData.animalType
+
     if (animalData == null) {
         res.status(403).send('No data sent!')
     }
     console.log("inside fetch all animals", animalData)
-        Animal.find({town: '', petType: animalData.animalType}, 'name animalImage town',  function (err, animals) {
+        Animal.find(filterData, 'name animalImage town',  function (err, animals) {
             if (err) {
                 return res.send(500, err);
             }
