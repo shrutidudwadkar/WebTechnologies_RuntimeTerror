@@ -9,7 +9,7 @@ var multer = require('multer');
 // storage defines the storage options to be used for file upload with multer
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/uploads/');
+    cb(null, 'PetAdoption/public/uploads/');
   },
   filename: function (req, file, cb) {
     var original = file.originalname;
@@ -37,8 +37,6 @@ router.get('/welcome', function(req, res, next) {
 
 /* Fetch the login page */
 router.post('/login', function(req, res, next) {
-  /*res.render('login', { title: 'Login' } );
-   */
   user.getUser(req,res)
 });
 
@@ -59,16 +57,15 @@ router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
   animal.insertAnimal(req, res)
 });
 
-
 /* Fetch the search page */
 router.get('/search', function(req, res, next) {
+  //res.render('search', { title: 'Search Page'});
   animal.fetchAllAnimals(req, res);
 });
 
+router.post('/search', function(req, res, next) {
+  animal.fetchAllAnimals(req, res);
 
-
-router.get('/add', function(req, res, next) {
-  res.render('add', { title: 'Add a new Character to the DB' });
 });
 
 

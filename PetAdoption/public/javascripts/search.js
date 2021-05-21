@@ -18,10 +18,10 @@ function searchAnimal() {
         url: '/search',
         data: data,
         dataType: 'json',
-        type: 'GET',
-        success: function (dataR) {
+        type: 'POST',
+        success: function (data) {
             // close the current registration modal
-            console.log("Redirected to search page.")
+            console.log("Redirected to search page.", data)
 
         },
         error: function (xhr, status, error) {

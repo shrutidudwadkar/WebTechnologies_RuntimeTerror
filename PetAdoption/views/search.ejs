@@ -22,9 +22,8 @@
         </nav>
     </div>
 </header>
-<!-- MAIN (Center website) -->
-<div class="main">
 
+<div class="main">
     <div>
         <h3>Filter pets by:</h3>
         <div class="filters">
@@ -46,36 +45,21 @@
             </select>
         </div>
     </div>
-
     <div class="row">
+        <% console.log(data)
+        for(var i = 0; i < data.length; i++) { %>
+            <div class="column pets">
+                <div class="content">
 
-        <div class="column pets">
-            <div class="content">
-                <img src="https://th.bing.com/th/id/OIP.c15bXOfnhU4sFN5ZAs4TJwHaEK?w=264&h=180&c=7&o=5&dpr=3&pid=1.7"
-                     alt="Mountains" style="width:100%">
-                <h4>Peanut</h4>
-                <p>good boy</p>
+                    <img src="<%= ""+data[i].animalImage %>" alt="<%= data[i].name %>" style="width:100%">
+
+                    <h4><%= data[i].name %></h4>
+                    <p><%= data[i].town %></p>
+                </div>
             </div>
-        </div>
-        <div class="column pets">
-            <div class="content">
-                <img src="https://th.bing.com/th/id/OIP.c15bXOfnhU4sFN5ZAs4TJwHaEK?w=264&h=180&c=7&o=5&dpr=3&pid=1.7"
-                     alt="Mountains" style="width:100%">
-                <h4>Peanut</h4>
-                <p>good boy</p>
-            </div>
-        </div>
-        <div class="column pets">
-            <div class="content">
-                <img src="https://th.bing.com/th/id/OIP.c15bXOfnhU4sFN5ZAs4TJwHaEK?w=264&h=180&c=7&o=5&dpr=3&pid=1.7"
-                     alt="Mountains" style="width:100%">
-                <h4>Peanut</h4>
-                <p>good boy</p>
-            </div>
-        </div>
+
+        <% } %>
     </div>
-
-    <!-- END MAIN -->
 </div>
 
 <script>

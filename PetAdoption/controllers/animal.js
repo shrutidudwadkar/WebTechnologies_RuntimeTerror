@@ -63,23 +63,14 @@ exports.displayAnimal = function (req, res) {
 
 exports.fetchAllAnimals = function (req, res) {
     console.log("inside fetch all animals")
-    try {
 
-        Animal.find({},'location petType town', function (err, animals) {
+        Animal.find({}, 'name animalImage town', function (err, animals) {
             if (err) {
-                console.log(err);
-            } else {
-                console.log(animals);
-
-                res.render("search", {data: animals})
-                console.log(data[0].location)
+                return res.send(500, err);
             }
+
+             res.render('search', {
+                data: animals
+            });
         });
-    } catch (e) {
-        res.status(500).send('error ' + e);
-    }
 };
-
-
-
-
