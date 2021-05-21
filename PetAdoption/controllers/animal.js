@@ -74,7 +74,7 @@ exports.fetchAllAnimals = function (req, res) {
         res.status(403).send('No data sent!')
     }
     console.log("inside fetch all animals", animalData)
-        Animal.find(filterData, 'name animalImage town',  function (err, animals) {
+        Animal.find(filterData, '_id name animalImage town',  function (err, animals) {
             if (err) {
                 return res.send(500, err);
             }
@@ -94,7 +94,7 @@ exports.filterSearchAnimals = function (req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        Animal.find({town: animalData.location, petType: animalData.animalType}, 'name animalImage town', function (err, animals) {
+        Animal.find({town: animalData.location, petType: animalData.animalType}, '_id name animalImage town', function (err, animals) {
             if (err) {
                 return res.send(500, err);
             } else {
