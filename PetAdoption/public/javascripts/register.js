@@ -30,7 +30,8 @@ function onRegister() {
 
         },
         error: function (xhr, status, error) {
-            alert('Error: ' + error.message);
+            console.log(error)
+            popup_modal('successModal', "Email address already registered")
         }
     });
 

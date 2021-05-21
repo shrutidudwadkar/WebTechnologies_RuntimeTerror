@@ -23,16 +23,32 @@ exports.registerUser = function (req, res) {
 
         });
         console.log('received: ' + user);
-
-        user.save(function (err, results) {
+        User.findOne({email: user.email}, 'email', function (err, userFound) {
             if (err) {
-                res.status(500).send('Invalid data!');
+                res.send(500, err)
             } else {
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(user));
+
+                if (userFound) {
+
+                    console.log("email exists")
+                    res.status(401).send("Email id already registered")
+                } else {
+                    console.log("email id not found")
+                    user.save(function (err, results) {
+                        if (err) {
+                            res.status(500).send('Invalid data!');
+                        } else {
+                            res.setHeader('Content-Type', 'application/json');
+                            res.send(JSON.stringify(user));
+                        }
+                    });
+
+                }
             }
         });
-    } catch (e) {
+
+            } catch (e) {
+        console.log("2nd catch")
         res.status(500).send('error ' + e);
     }
 };
@@ -48,8 +64,8 @@ exports.getUser = function (req, res) {
             if (err) {
                 return res.send(500, err);
             } else {
-                console.log("form",userData.password)
-                console.log("DB",userFound.password)
+                console.log("form", userData.password)
+                console.log("DB", userFound.password)
                 if (userData.password === userFound.password) {
                     res.setHeader('Content-Type', 'application/json');
                     res.send(JSON.stringify(userFound));
