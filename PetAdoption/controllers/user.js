@@ -60,7 +60,7 @@ exports.getUser = function (req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        User.findOne({email: userData.email}, 'email password', function (err, userFound) {
+        User.findOne({email: userData.email}, 'email password firstname', function (err, userFound) {
             if (err) {
                 return res.send(500, err);
             } else {

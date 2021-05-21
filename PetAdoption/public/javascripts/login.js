@@ -22,7 +22,7 @@ function loginUser() {
             var ret = dataR;
             close_popup_modal('loginModal')
             popup_modal('successModal', "Login successful.")
-            document.getElementById("loginId").innerHTML = "Hi", dataR.name;
+            document.getElementById("loginId").innerHTML = "Hi", dataR.firstname;
 
         },
         error: function (xhr, status, error) {
