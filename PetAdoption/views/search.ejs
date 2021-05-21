@@ -2,7 +2,6 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/stylesheets/search.css">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/welcome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascripts/register.js"></script>
     <script src="/javascripts/animal.js"></script>
@@ -44,8 +43,7 @@
 <div class="main">
     <%- include partials/searchBar.ejs %>
     <div class="row">
-        <%
-        for(var i = 0; i < data.length; i++) { %>
+        <% for(var i = 0; i < data.length; i++) { %>
             <div class="column pets">
                 <div class="content">
                     <input type="hidden" id="animalId" name="animalId" value="<%= data[i]._id %>">
@@ -59,6 +57,7 @@
     </div>
 </div>
 <script>
+
     filterSelection("all")
 
     function filterSelection(c) {
@@ -105,6 +104,7 @@
             this.className += " active";
         });
     }
+
 </script>
 
 </body>
