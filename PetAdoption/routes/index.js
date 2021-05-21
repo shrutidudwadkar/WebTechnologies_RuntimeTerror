@@ -52,8 +52,10 @@ router.post('/register', function(req, res) {
 
 
 /* Fetch the animal page */
-router.get('/animal', function(req, res, next) {
-  res.render('animal', { title: 'Animal Page'});
+router.post('/animal', function(req, res, next) {
+  //res.render('animal', { title: 'Animal Page'});
+  console.log("in index.js")
+  animal.displayAnimal(req,res)
 });
 
 /* Add animal */
@@ -75,14 +77,7 @@ router.post('/search_animal', function(req, res, next) {
 
 });
 */
-router.get('/test', function(req, res) {
-  res.render('test')
 
-});
 
-router.post('/test', function(req, res) {
-  console.log(">>>>>>>",req.body);
-  res.send('Testing')
-});
 
 module.exports = router;

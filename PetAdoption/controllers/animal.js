@@ -46,12 +46,15 @@ exports.displayAnimal = function (req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        Animal.findById({_id: animalData._id}, '_id', function (err, animalFound) {
+        Animal.findById({_id: animalData.animalId}, '_id isAdopted comments name animalImage petType town tags', function (err, animalFound) {
             if (err) {
                 return res.send(500, err);
             } else {
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(animalFound));
+                console.log("YAY animal found")
+                res.render('animal',
+                    {data:animalFound}
+                    );
+
             }
         });
 
@@ -79,7 +82,7 @@ exports.fetchAllAnimals = function (req, res) {
                 return res.send(500, err);
             }
             console.log(animals)
-            res.render('search', {
+            return res.render('search', {
                 data: animals
             });
 
