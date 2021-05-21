@@ -1,33 +1,32 @@
 function searchAnimal() {
-    let formArray = $("form").serializeArray();
-    let data = {};
-    for (let index in formArray) {
-        data[formArray[index].name] = formArray[index].value;
-    }
+    event.preventDefault();
+    event.stopImmediatePropagation();
 
+    var myForm = document.getElementById('searchForm');
+    var formData = new FormData(myForm);
 
-    data = {
-        town: data.location,
-        petType: data.animalType,
-        tags:data.tags1
-
-    }
-    console.log(data);
-
+    console.log(formData)
     $.ajax({
-        url: '/search',
-        data: data,
+        url: '/search_animal',
+        data: formData,
         dataType: 'json',
         type: 'POST',
+        // processData: false,
+        // contentType: false,
         success: function (data) {
             // close the current registration modal
             console.log("Redirected to search page.", data)
 
         },
         error: function (xhr, status, error) {
-            alert('Error: ' + error.message);
+            console.log("err", error)
+            console.log("xhr", xhr)
+            console.log("status", status)
         }
     });
 
-    event.preventDefault();
+    return false;
+    //window.location.href = "./search"
+
+
 }

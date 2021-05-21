@@ -5,8 +5,13 @@ var user = require('../controllers/user');
 var animal = require('../controllers/animal');
 
 var multer = require('multer');
+var bodyParser = require('body-parser');
 
 // storage defines the storage options to be used for file upload with multer
+var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'PetAdoption/public/uploads/');
@@ -58,15 +63,16 @@ router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
 });
 
 /* Fetch the search page */
-router.get('/search', function(req, res, next) {
+router.post('/search_animal', function(req, res, next) {
   //res.render('search', { title: 'Search Page'});
+  console.log("test", req.body)
   animal.fetchAllAnimals(req, res);
 });
-
+/*
 router.post('/search', function(req, res, next) {
-  animal.fetchAllAnimals(req, res);
+  animal.filterSearchAnimals(req, res);
 
 });
-
+*/
 
 module.exports = router;

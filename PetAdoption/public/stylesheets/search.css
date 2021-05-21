@@ -107,3 +107,45 @@ header {
     float: left;
     padding-left: 20px;
 }
+
+
+
+
+.searchBar {
+
+    align-content: center;
+    color: #f9f8f8;
+    cursor: pointer;
+    border-radius: 1.2rem;
+    width: 450px;
+    height: 60px;
+    border: 1px solid #f9f8f8;
+    font-family: Okra,Helvetica,sans-serif;
+    margin: auto;
+    background-color: white;
+    position: center;
+}
+
+.searchBar select {
+    outline: none;
+    border: 0px white;
+    color: #aaaaaa;
+    padding-block: 15px;
+}
+.searchBar input {
+    outline: none;
+    border: 0px white;
+    color: #aaaaaa;
+
+}
+#magnify_glass {
+    width: 20px;
+    height: 20px;
+
+}
+#location_img {
+    width: 30px;
+    height: 30px;
+    padding-left: 5px;
+    padding-top: 10px;
+}

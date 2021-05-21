@@ -14,7 +14,7 @@ exports.insertAnimal = function (req, res) {
         var animal = new Animal({
 
             name: animalData.name,
-            animalImage: req.file.path,
+            animalImage: req.file.path.replace("PetAdoption/public", ".."),
             petType: animalData.petType,
             town: animalData.town,
             tags: animalData.tags,
@@ -62,15 +62,40 @@ exports.displayAnimal = function (req, res) {
 
 
 exports.fetchAllAnimals = function (req, res) {
-    console.log("inside fetch all animals")
+    console.log("inside fetch all animals", req.body)
+
 
         Animal.find({}, 'name animalImage town', function (err, animals) {
             if (err) {
                 return res.send(500, err);
             }
 
-             res.render('search', {
+            res.render('search', {
                 data: animals
             });
         });
+};
+
+exports.filterSearchAnimals = function (req, res) {
+
+    var animalData = req.body;
+    console.log("??????",animalData)
+    if (animalData == null) {
+        res.status(403).send('No data sent!')
+    }
+    try {
+        Animal.find({town: animalData.location, petType: animalData.animalType}, 'name animalImage town', function (err, animals) {
+            if (err) {
+                return res.send(500, err);
+            } else {
+                console.log(">>>>>>>>>>>>",animals)
+                res.render('search', {
+                    data: animals
+                });
+            }
+        });
+
+    } catch (e) {
+        res.status(500).send('error ' + e);
+    }
 };
