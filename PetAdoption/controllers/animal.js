@@ -1,4 +1,4 @@
-var bodyParser = require("body-parser");
+var bodyParser = require("body-parser").json();
 var req = require('request');
 var Animal = require('../models/animal');
 var path = require('path');
@@ -62,17 +62,24 @@ exports.displayAnimal = function (req, res) {
 
 
 exports.fetchAllAnimals = function (req, res) {
-    console.log("inside fetch all animals", req.body)
 
-
-        Animal.find({}, 'name animalImage town', function (err, animals) {
+    var animalData = req.body;
+    var filterData = {
+        "a":animalData.location,
+    }
+    if (animalData == null) {
+        res.status(403).send('No data sent!')
+    }
+    console.log("inside fetch all animals", animalData)
+        Animal.find({town: '', petType: animalData.animalType}, 'name animalImage town',  function (err, animals) {
             if (err) {
                 return res.send(500, err);
             }
-
+            console.log(animals)
             res.render('search', {
                 data: animals
             });
+
         });
 };
 
@@ -89,9 +96,8 @@ exports.filterSearchAnimals = function (req, res) {
                 return res.send(500, err);
             } else {
                 console.log(">>>>>>>>>>>>",animals)
-                res.render('search', {
-                    data: animals
-                });
+
+                res.redirect('/search_view')
             }
         });
 

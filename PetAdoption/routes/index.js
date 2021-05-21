@@ -65,14 +65,24 @@ router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
 /* Fetch the search page */
 router.post('/search_animal', function(req, res, next) {
   //res.render('search', { title: 'Search Page'});
-  console.log("test", req.body)
+  console.log("test get", req.body)
   animal.fetchAllAnimals(req, res);
 });
 /*
-router.post('/search', function(req, res, next) {
-  animal.filterSearchAnimals(req, res);
+router.post('/search_animal', function(req, res, next) {
+  console.log("test post", req.body)
+  animal.fetchAllAnimals(req, res);
 
 });
 */
+router.get('/test', function(req, res) {
+  res.render('test')
+
+});
+
+router.post('/test', function(req, res) {
+  console.log(">>>>>>>",req.body);
+  res.send('Testing')
+});
 
 module.exports = router;
