@@ -1,6 +1,19 @@
 function onRegister() {
    let formArray= $("form").serializeArray();
-    let data={};
+   const rbs = document.querySelectorAll('input[name="userType"]');
+   let user;
+   let admin;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            user = rb.value;
+            break;
+        }
+    }
+    console.log(user)
+    if (user === "adminUser") {
+        admin = true
+    }
+   let data={};
     for (let index in formArray){
         data[formArray[index].name]= formArray[index].value;
     }
@@ -11,7 +24,8 @@ function onRegister() {
         email:data.email,
         phone: data.phone,
         password: data.password,
-        isAdmin: false
+        isAdmin:admin
+        // isAdmin: false
 
     }
     console.log(data);

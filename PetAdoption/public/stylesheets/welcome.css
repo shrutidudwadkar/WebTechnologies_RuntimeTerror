@@ -65,6 +65,11 @@
     font-size: 16px;
 }
 
+.userType{
+    font-size: 16px;
+    font-family: Okra,Helvetica,sans-serif;
+}
+
 .selectBox{
 
     width:20%;
