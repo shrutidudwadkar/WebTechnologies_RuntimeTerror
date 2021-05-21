@@ -14,7 +14,7 @@ exports.insertAnimal = function (req, res) {
         var animal = new Animal({
 
             name: animalData.name,
-            animalImage: req.file.path.replace("PetAdoption/public", ".."),
+            animalImage: ".."+req.file.path.substr(req.file.path.indexOf("public")+6 , req.file.path.length),
             petType: animalData.petType,
             town: animalData.town,
             tags: animalData.tags,
