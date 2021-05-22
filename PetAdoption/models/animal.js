@@ -12,7 +12,6 @@ var Animal = new Schema(
         isAdopted: {type: Boolean, default:false},
         comments: {type: Array}
 
-
     }
 );
 

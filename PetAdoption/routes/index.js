@@ -3,6 +3,7 @@ var router = express.Router();
 
 var user = require('../controllers/user');
 var animal = require('../controllers/animal');
+var comments = require('../controllers/comments');
 
 var multer = require('multer');
 var bodyParser = require('body-parser');
