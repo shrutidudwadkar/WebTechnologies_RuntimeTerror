@@ -27,3 +27,8 @@ function addAnimalInfo() {
 
     return false;
 }
+
+function applyForAdoption(data) {
+    popup_modal('successModal', "Thank you for adopting.")
+
+}

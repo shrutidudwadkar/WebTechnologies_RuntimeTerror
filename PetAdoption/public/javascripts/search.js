@@ -63,7 +63,7 @@ function getAnimalInfo() {
     return false;
 
 }
-
+/*
 // Adding first line as the id isn't created yet
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('animalImageId').addEventListener('click', function () {
@@ -78,3 +78,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }, false);
 });
+*/

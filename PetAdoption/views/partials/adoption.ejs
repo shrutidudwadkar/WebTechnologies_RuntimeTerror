@@ -1,0 +1,24 @@
+<div id="adoptionModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_popup_modal('adoptionModal');">&times;</span>
+        <form id="adoptionForm" onsubmit="applyForAdoption(<%=data%>)" method="post">
+            <h2>Adoption Form</h2>
+            <div class="textField">
+                <input type="text" name="petName" id="petName" value="<%=data.name%>" disabled>
+            </div>
+            <div class="textField">
+                <input type="text" name="petType" id="petType" value="<%=data.petType%>" disabled>
+            </div>
+            <div class="textField">
+                <input type="text" name="location" id="location" value="<%=data.town%>" disabled>
+            </div>
+            <div class="textField">
+                <input type="email" name="email" id="email" placeholder="Confirm email" required>
+            </div>
+            <div class="textField">
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" placeholder="Confirm Phone number" required>
+            </div>
+            <input type="submit" class="button" name="adopt" id="adopt" value="Confirm">
+        </form>
+    </div>
+</div>

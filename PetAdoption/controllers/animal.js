@@ -50,10 +50,10 @@ exports.displayAnimal = function (req, res) {
             if (err) {
                 return res.send(500, err);
             } else {
-                console.log("YAY animal found")
-                res.render('animal',
-                    {data:animalFound}
-                    );
+                console.log("YAY animal found", animalFound)
+                return res.render('animal', {
+                    data: animalFound
+                });
 
             }
         });

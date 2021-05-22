@@ -43,17 +43,21 @@
 <div class="main">
     <%- include partials/searchBar.ejs %>
     <div class="row">
+
         <% for(var i = 0; i < data.length; i++) { %>
             <div class="column pets">
                 <div class="content">
+                    <form action="/animal" method="POST">
                     <input type="hidden" id="animalId" name="animalId" value="<%= data[i]._id %>">
                     <input id="animalImageId" name="animalImageId" type="image" src="<%= data[i].animalImage %>"
                            alt="<%= data[i].name %>" style="width:100%"/>
                     <h4><%= data[i].name %></h4>
                     <p><%= data[i].town %></p>
+                    </form>
                 </div>
             </div>
         <% } %>
+
     </div>
 </div>
 <script>
