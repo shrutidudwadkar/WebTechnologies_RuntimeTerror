@@ -40,10 +40,17 @@
             </div>
 
             <div class="right-column">
-                <h1><%= data.name %></h1>
-                <p><%= data.petType %></p>
-                <p><%= data.town %></p>
 
+                <h1><%= data.name %></h1>
+                <p>Pet Type: <%= data.petType %></p>
+                <p>Location:</p><a href="#" onclick="searchByTag(<%= data.town %>)" class="tags"><%= data.town %></a>
+                <br>
+                <p>Tags:</p>
+                <% for(var i = 0; i < data.tags.length; i++) {%>
+                <a href="#" onclick="searchByTag(<%=data.tags[i]%>)" class="tags"><%=data.tags[i]%></a>
+                <%} %>
+                <br>
+                <br>
                 <%if(data.isAdopted) {%>
                 <p style="color: red"> This animal has been adopted.</p>
                 <input type="submit" class="button" name="adoptBtn" id="adoptBtn" value="Apply for adoption"

@@ -211,3 +211,35 @@ header {
     margin-bottom: 10px;
     font-family: Okra,Helvetica,sans-serif;
 }
+
+
+/* Close button */
+.close {
+    float: right;
+    font-size: 28px;
+    color: #aaaaaa;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+/* tags button */
+.tags {
+    float: left;
+    font-size: 15px;
+    color: #033cac;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.tags:hover,
+.tags:focus {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}

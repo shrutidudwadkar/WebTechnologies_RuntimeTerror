@@ -96,3 +96,26 @@ function onTextComment() {
 
     event.preventDefault();
 }
+
+function searchByTag(tag){
+    event.preventDefault();
+    $.ajax({
+        url: '/search_animal',
+        data: {"tag": tag},
+        dataType: 'json',
+        type: 'POST',
+        success: function (data) {
+            // close the current registration modal
+            console.log("Redirected to search page.", data)
+
+        },
+        error: function (xhr, status, error) {
+            console.log("err", error)
+            console.log("xhr", xhr)
+            console.log("status", status)
+        }
+    });
+
+    return false;
+
+}

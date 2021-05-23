@@ -108,6 +108,8 @@ exports.fetchAllAnimals = function (req, res) {
         filterData["petType"] = animalData.animalType
     if(animalData.tags1 != null && animalData.tags1 != "") {
         var tagsList = animalData.tags1.split(" ");
+        if (animalData.location != null && animalData.location != "")
+            tagsList.push(animalData.location)
         filterData["tags"] = {$in: tagsList}
         }
     console.log("filterData", filterData)
