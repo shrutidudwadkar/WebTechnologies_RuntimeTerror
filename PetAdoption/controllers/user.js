@@ -3,6 +3,11 @@ var req = require('request');
 var User = require('../models/user');
 var path = require('path');
 
+/*
+This function is used to create a new entry in the database
+i.e. create a new user. It also verifies whether the email
+address is already being used and subsequently throws an error
+ */
 
 exports.registerUser = function (req, res) {
 
@@ -52,6 +57,12 @@ exports.registerUser = function (req, res) {
         res.status(500).send('error ' + e);
     }
 };
+
+/*
+This function is for session management, If admin it redirects
+to the Admin page else the standard user are directed to the
+Home Page
+ */
 
 exports.getUser = function (req, res) {
     console.log("inside console")
