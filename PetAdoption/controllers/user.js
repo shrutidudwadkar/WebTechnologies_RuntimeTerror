@@ -72,9 +72,9 @@ exports.getUser = function (req, res) {
     }
     try {
         //is admin user
-        if(userData.email === 'admin' && userData.password === 'admin') {
+        if(userData.email === 'admin@admin' && userData.password === 'admin') {
             res.setHeader('Content-Type', 'application/json');
-            req.session.user = userData.email
+            req.session.user = "Admin"
             res.send({name: userData.email, title: "PetAdoption"})
         } else {
 
