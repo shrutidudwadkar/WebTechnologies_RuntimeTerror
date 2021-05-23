@@ -15,7 +15,7 @@
                 <% if(user === 'Admin') { %>
                     <li><a id="addAnimalId" onclick="popup_modal('addAnimalModal');">Add Animal</a></li>
                 <%}%>
-                    <li><a id="logout" action="/logout">Logout</a></li>
+                    <li><a id="logout" onclick="logoutUser();">Logout</a></li>
 
         <% } else { %>
 

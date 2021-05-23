@@ -72,3 +72,16 @@ function redirectToRegister(id) {
     close_popup_modal('loginModal')
     popup_modal('registerModal')
 }
+function logoutUser() {
+
+    $.ajax({
+        url: '/logout' ,
+        type: 'POST',
+        success: function (dataR) {
+        },
+        error: function (xhr, status, error) {
+            console.log(error)
+        }
+    });
+
+}

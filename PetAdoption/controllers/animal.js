@@ -23,7 +23,7 @@ exports.insertAnimal = function (req, res) {
             animalImage: ".." + req.file.path.substr(req.file.path.indexOf("public") + 6, req.file.path.length),
             petType: animalData.petType,
             town: animalData.town,
-            tags: animalData.tags,
+            tags: animalData.tags.split(","),
             isAdopted: false
 
         });

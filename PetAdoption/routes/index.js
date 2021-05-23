@@ -103,9 +103,8 @@ router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
 /* logout the session*/
 router.post('/logout', function(req, res, next) {
   console.log("Logout session")
-  req.session.destroy()
-  res.redirect('/welcome')
-
+  req.session.user = false
+  //res.redirect('/welcome')
 });
 
 
