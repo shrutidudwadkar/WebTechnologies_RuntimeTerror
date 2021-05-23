@@ -4,7 +4,12 @@ var Animal = require('../models/animal');
 var path = require('path');
 var Comments = require('../models/comments');
 
-
+/*
+This functionality is limited only to admin users
+to add new animal along with its details.
+Once the animal is added successfully the new animal
+would be visible to the users on the Filter Animal Page.
+ */
 exports.insertAnimal = function (req, res) {
     console.log("inside insert animal")
     var animalData = req.body;
@@ -39,6 +44,14 @@ exports.insertAnimal = function (req, res) {
     }
 
 };
+
+/*
+This function is called on the Animal Page by clicking on
+one the animals from teh Filter Page. The animal id which is
+transported from the last page is used to query the database
+to retrieve all the columns including the image and are then
+rendered onto this page.
+ */
 
 exports.displayAnimal = function (req, res) {
 
@@ -77,6 +90,13 @@ exports.displayAnimal = function (req, res) {
     }
 };
 
+/*
+This function would filter the parameters entered on the search bar
+present on the Home Page and the Filter Animal Page. The database
+is queried based on the location and type of the animal entered from the
+dropdown values and also on the description which gets split wrt to space
+into tags.
+ */
 
 exports.fetchAllAnimals = function (req, res) {
 
@@ -110,6 +130,12 @@ exports.fetchAllAnimals = function (req, res) {
     });
 };
 
+/* This function is called on the Filter Animal page and
+is the Faceted search implementation where the results obtained
+can be further filtered according to the available parameters
+ */
+
+
 exports.filterSearchAnimals = function (req, res) {
 
     var animalData = req.body;
@@ -135,6 +161,12 @@ exports.filterSearchAnimals = function (req, res) {
         res.status(500).send('error ' + e);
     }
 };
+
+/*
+This function is called from the Animal Page on a button click.
+Here the email address of the user and the field isAdopted is
+updated in the animal collection.
+ */
 
 exports.applyForAdoption = function (req, res) {
 
