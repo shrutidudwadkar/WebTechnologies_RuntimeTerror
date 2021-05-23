@@ -62,7 +62,6 @@ router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
   animal.insertAnimal(req, res)
 });
 
-
 /* Fetch the search page */
 router.post('/search_animal', function(req, res, next) {
   //res.render('search', { title: 'Search Page'});
@@ -77,30 +76,35 @@ router.post('/animal', function(req, res, next) {
   animal.displayAnimal(req,res)
 });
 
+/* Fetch the animal page */
+router.post('/animal', function(req, res, next) {
+  //res.render('animal', { title: 'Animal Page'});
+  console.log("Route animal.js", req.body)
+  animal.displayAnimal(req,res)
+});
 
 /* Insert the comment */
-
 router.post('/insertComment', function(req, res, next) {
   console.log("Route to insertComment")
   comments.insertComment(req,res)
 });
 
+/* Submit the adoption page */
+router.post('/adopt', function(req, res) {
+  animal.applyForAdoption(req,res);
+});
+
+/* Add animal */
+router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
+  console.log(req);
+  animal.insertAnimal(req, res)
+});
 
 /* logout the session*/
 router.post('/logout', function(req, res, next) {
   console.log("Logout session")
   req.session.destroy()
 });
-
-
-/*
-router.post('/search_animal', function(req, res, next) {
-  console.log("test post", req.body)
-  animal.fetchAllAnimals(req, res);
-
-});
-*/
-
 
 
 module.exports = router;
