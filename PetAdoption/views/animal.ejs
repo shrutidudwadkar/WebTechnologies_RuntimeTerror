@@ -26,7 +26,7 @@
 
         <div class="left-column">
 
-            <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
+
             <canvas id="canvas">
                 <img type="image" alt="" id="animalImagePathId" name="animalImagePathId"
                      src="<%= data.animalImage %>"/>
@@ -76,7 +76,7 @@
                     <form  id="commentForm" method="POST" action="/insertComment">
 -->
                     <form  id="commentForm" method="POST">
-
+                        <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
                         <textarea placeholder="Please add your comment here" id="newComment" name="newComment"></textarea>
                         <div>
                             <input type="submit" class="button" name="comment" id="comment" value="Submit"/>
