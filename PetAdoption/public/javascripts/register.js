@@ -1,14 +1,8 @@
 function onRegister() {
    let formArray= $("form").serializeArray();
-   const rbs = document.querySelectorAll('input[name="userType"]');
    let user;
    let admin;
-    for (const rb of rbs) {
-        if (rb.checked) {
-            user = rb.value;
-            break;
-        }
-    }
+
     console.log(user)
     if (user === "adminUser") {
         admin = true

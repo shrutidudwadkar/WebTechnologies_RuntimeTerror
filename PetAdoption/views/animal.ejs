@@ -21,7 +21,7 @@
         <%- include partials/header.ejs %>
     </div>
 </header>
-<div class="animalInfo">
+<div class="animalInfo" id="animalInfo">
     <div class="container1">
 
         <div class="left-column">
@@ -41,12 +41,17 @@
 
             <div class="right-column">
                 <h1><%= data.name %></h1>
-                <p><%= data.town %></p>
                 <p><%= data.petType %></p>
+                <p><%= data.town %></p>
 
+                <%if(data.isAdopted) {%>
+                <p style="color: red"> This animal has been adopted.</p>
                 <input type="submit" class="button" name="adoptBtn" id="adoptBtn" value="Apply for adoption"
-                       onclick="popup_modal('adoptionModal');"/>
-
+                        disabled style="background-color:#9b9898"/>
+                <% } else {%>
+                    <input type="submit" class="button" name="adoptBtn" id="adoptBtn" value="Apply for adoption"
+                           onclick="popup_modal('adoptionModal');" />
+                    <%}%>
                 <div class="right-column">
                     <ul class="comment-section">
 
@@ -166,6 +171,6 @@
         }
 
     </script>
-
+<%- include partials/footer.ejs %>
 </body>
 </html>

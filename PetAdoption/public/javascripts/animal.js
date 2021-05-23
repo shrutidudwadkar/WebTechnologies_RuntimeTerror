@@ -1,5 +1,5 @@
 function addAnimalInfo() {
-   event.preventDefault();
+    event.preventDefault();
     event.stopImmediatePropagation();
 
     var myForm = document.getElementById('addAnimalForm');
@@ -8,7 +8,7 @@ function addAnimalInfo() {
     console.log(formData)
 
     $.ajax({
-        url:  '/addAnimal' ,
+        url: '/addAnimal',
         data: formData,
         dataType: 'json',
         type: 'POST',
@@ -33,23 +33,25 @@ function applyForAdoption() {
     var animalId = document.getElementById('animalId').value
     var email = document.getElementById("email").value
 
-     info = {
-         animalId: animalId,
-         email: email,
-         isAdopted: true
-     }
+    info = {
+        animalId: animalId,
+        email: email,
+        isAdopted: true
+    }
 
 
     $.ajax({
-        url:  '/adopt' ,
+        url: '/adopt',
         data: info,
         dataType: 'json',
         type: 'POST',
 
         success: function (dataR) {
             var ret = dataR;
+            console.log(dataR)
             close_popup_modal('adoptionModal')
-            popup_modal('successModal', "Thank you for adopting.")
+            popup_modal('successModal', "Thank you for showing interest in adoption. From all of us here we would like you to know that today you have taken a step in making the world a better place. Congratulations and we hope you will be very happy together and create many paw-fect memories along the way. While we complete the formalities in the meantime if you have any questions or queries don't hesitate to reach out to us. ")
+            location.reload(true);
         },
         error: function (xhr, status, error) {
 
@@ -62,12 +64,11 @@ function applyForAdoption() {
 }
 
 
-
 function onTextComment() {
-    let formArray= $("form").serializeArray();
-    let data={};
-    for (let index in formArray){
-        data[formArray[index].name]= formArray[index].value;
+    let formArray = $("form").serializeArray();
+    let data = {};
+    for (let index in formArray) {
+        data[formArray[index].name] = formArray[index].value;
     }
 
     data = {
@@ -79,7 +80,7 @@ function onTextComment() {
     console.log(data)
 
     $.ajax({
-        url:  '/insertComment' ,
+        url: '/insertComment',
         data: data,
         dataType: 'json',
         type: 'POST',
