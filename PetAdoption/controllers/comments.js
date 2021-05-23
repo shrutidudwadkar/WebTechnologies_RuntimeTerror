@@ -4,7 +4,10 @@ var Comments = require('../models/comments');
 var path = require('path');
 var animal = require('../controllers/animal');
 
-
+/*
+This function is used to add/update the comments entered
+by the user on the Animal Page.
+ */
 exports.insertComment = function (req, res) {
     console.log("inside insert comment")
     var comment = req.body;
