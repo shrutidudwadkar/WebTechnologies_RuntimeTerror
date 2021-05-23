@@ -8,7 +8,7 @@ var Animal = new Schema(
         animalImage :{type: String },
         petType: {type: String, required: true},
         town: {type: String, required: true, max: 100},
-        tags: {type: String, required: true, max: 100},
+        tags: {type: Array},
         isAdopted: {type: Boolean, default:false},
         comments: {type: Array},
         adoptedBy: {type: String} ,
