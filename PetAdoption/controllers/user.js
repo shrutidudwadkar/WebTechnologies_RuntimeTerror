@@ -60,15 +60,16 @@ exports.getUser = function (req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        User.findOne({email: userData.email}, 'email password firstname', function (err, userFound) {
+        User.findOne({email: userData.email}, '_id password email firstname', function (err, userFound) {
             if (err) {
                 return res.send(500, err);
             } else {
-                console.log("form", userData.password)
-                console.log("DB", userFound.password)
+
                 if (userData.password === userFound.password) {
                     res.setHeader('Content-Type', 'application/json');
-                    res.send(JSON.stringify(userFound));
+                    req.session.user = userFound
+                    //res.send(JSON.stringify(userFound));
+                    res.send({name: userFound.firstname, title: "PetAdoption"})
                 } else {
                     console.log("error")
                     res.status(401).send("Invalid username or password")

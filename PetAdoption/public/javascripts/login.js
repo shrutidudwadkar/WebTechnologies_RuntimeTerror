@@ -18,11 +18,17 @@ function loginUser() {
         data: data,
         dataType: 'json',
         type: 'POST',
-        success: function (dataR) {
-            var ret = dataR;
+        success: function (data) {
+            console.log(data)
+
             close_popup_modal('loginModal')
             popup_modal('successModal', "Login successful.")
-            document.getElementById("loginId").innerHTML = "Hi", dataR.firstname;
+            document.getElementById("user").innerHTML = "Hi, " + data.name;
+            document.getElementById("logout").innerHTML = "Logout";
+            document.getElementById("loginId").style.display = "none";
+            document.getElementById("registerId").style.display = "none";
+
+
 
         },
         error: function (xhr, status, error) {
