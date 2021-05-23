@@ -2,6 +2,7 @@ var bodyParser = require("body-parser");
 var req = require('request');
 var Comments = require('../models/comments');
 var path = require('path');
+var animal = require('../controllers/animal');
 
 
 exports.insertComment = function (req, res) {
@@ -11,24 +12,27 @@ exports.insertComment = function (req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        var comment = new Comments({
+        var userComment = new Comments({
 
             animalId: comment.animalId,
-            user: comment.user,
-            commentText: comment.commentText,
-            commentImage:".."+req.file.path.substr(req.file.path.indexOf("public")+6 , req.file.path.length),
-            dateOfComment: comment.dateOfComment,
-            isImage: (comment.commentText == null) ? true: false
+            user: req.session.user,
+            commentText: comment.newComment,
+            //commentImage:".."+req.file.path.substr(req.file.path.indexOf("public")+6 , req.file.path.length),
+            dateOfComment: new Date().getFullYear(),
+            isImage: comment.isImage
 
         });
-        Comments.save(function (err, results) {
+        console.log("?????/",JSON.stringify(comment))
+        console.log("?????/id",comment.data._id)
+        userComment.save(function (err, results) {
             if (err) {
                 res.status(500).send('Invalid data!');
                 console.log("Invalid data!")
 
             } else {
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(comment));
+
+                animal.displayAnimal(req,res)
+               
             }
         });
 
@@ -37,10 +41,10 @@ exports.insertComment = function (req, res) {
     }
 
 };
-
+/*
 exports.displayComments = function (req, res) {
 
-    var animalId = req.body.animalId;
+    var animalId = req.body.data._id;
     if (animalId == null) {
         res.status(403).send('No data sent!')
     }
@@ -49,9 +53,12 @@ exports.displayComments = function (req, res) {
             if (err) {
                 return res.send(500, err);
             } else {
-                console.log("Cooments found", comments)
+                console.log("Comments found", comments)
+
                 return res.render('animal', {
-                    data: comments
+                    comments: comments,
+                    title: "Pet Adoption",
+                    data: req.body.data
                 });
 
             }
@@ -61,3 +68,4 @@ exports.displayComments = function (req, res) {
         res.status(500).send('error ' + e);
     }
 };
+*/

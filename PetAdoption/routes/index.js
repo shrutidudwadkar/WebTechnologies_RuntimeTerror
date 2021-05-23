@@ -71,6 +71,14 @@ router.post('/search_animal', function(req, res, next) {
   console.log("test get", req.body)
   animal.fetchAllAnimals(req, res);
 });
+
+
+/* Insert the comment */
+
+router.post('/insertComment', function(req, res, next) {
+  comments.insertComment(req,res)
+});
+
 /*
 router.post('/search_animal', function(req, res, next) {
   console.log("test post", req.body)

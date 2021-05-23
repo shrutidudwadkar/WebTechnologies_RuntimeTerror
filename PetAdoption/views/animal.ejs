@@ -16,19 +16,15 @@
         <h3 id="welcomeId">Pet Adoption</h3>
     </div>
     <div class="links">
-        <nav>
-            <ul>
-                <li><a id="loginId" onclick="popup_modal('loginModal');">Login</a></li>
-                <li><a id="registerId" onclick="popup_modal('registerModal');">Register</a></li>
-                <li><a id="addAnimalId" onclick="popup_modal('addAnimalModal');">Add animal</a></li>
-                <li><a>Contact</a></li>
-            </ul>
-        </nav>
+        <%- include partials/header.ejs %>
     </div>
 </header>
 <div class="animalInfo">
     <div class="container1">
+
         <div class="left-column">
+            <form  id="commentForm" method="POST" action="/insertComment"  enctype="multipart/form-data">
+                <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
             <canvas id="canvas">
                 <img type="image" alt="" id="animalImagePathId"
                      src="<%= data.animalImage %>"/>
@@ -36,6 +32,7 @@
             <div>
                 <input type="submit" class="button" name="image-comment" id="image-comment" value="Add as a comment"/>
             </div>
+            </form>
         </div>
 
         <div class="right-column">
@@ -48,27 +45,24 @@
 
             <div class="right-column">
                 <ul class="comment-section">
-                    <h1>Comments</h1>
-                    <li class="comments">
-                        <div class="information">
-                            <p1>User 1 <span>7 hours ago</span></p1>
-                        </div>
-                        <p2>I think this shall work.</p2>
-                        <br>
-                        <br>
-                    </li>
-                    <li class="comments">
-                        <div class="information">
-                            <p1>User 2 <span>7 hours ago</span></p1>
-                        </div>
-                        <p2>I think this shall work.</p2>
-                        <br>
-                        <br>
-                    </li>
-                    <!—Add more comments in this section-->
 
-                    <form  id="commentForm" method="POST">
-                        <textarea placeholder="Please add your comment here" name="new-comments"></textarea>
+                    <h1>Comments</h1>
+                    <%  for(var i = 0; i < comments.length; i++) { %>
+                    <li class="comments">
+                        <div class="information">
+                            <p1 id="user"><%= comments[i].user %> <span id="dateOfComment"><%= comments[i].dateOfComment %></span></p1>
+                        </div>
+                        <p2 id="textComment"><%= comments[i].commentText %></p2>
+                        <br>
+                        <br>
+                    </li>
+                    <% } %>
+
+                    <!—Add more comments in this section-->
+                    <form  id="commentForm" method="POST" action="/insertComment">
+                        <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
+
+                        <textarea placeholder="Please add your comment here" id="newComment" name="newComment"></textarea>
                         <div>
                             <input type="submit" class="button" name="comment" id="comment" value="Submit"/>
 

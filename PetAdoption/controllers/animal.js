@@ -2,6 +2,7 @@ var bodyParser = require("body-parser").json();
 var req = require('request');
 var Animal = require('../models/animal');
 var path = require('path');
+var Comments = require('../models/comments');
 
 
 exports.insertAnimal = function (req, res) {
@@ -14,7 +15,7 @@ exports.insertAnimal = function (req, res) {
         var animal = new Animal({
 
             name: animalData.name,
-            animalImage: ".."+req.file.path.substr(req.file.path.indexOf("public")+6 , req.file.path.length),
+            animalImage: ".." + req.file.path.substr(req.file.path.indexOf("public") + 6, req.file.path.length),
             petType: animalData.petType,
             town: animalData.town,
             tags: animalData.tags,
@@ -51,8 +52,20 @@ exports.displayAnimal = function (req, res) {
                 return res.send(500, err);
             } else {
                 console.log("YAY animal found", animalFound)
-                return res.render('animal', {
-                    data: animalFound
+
+                Comments.find({animalId: animalData.animalId}, '_id animalId user commentText commentImage dateOfComment isImage', function (err, comments) {
+                    if (err) {
+                        return res.send(500, err);
+                    } else {
+                        console.log("Comments found", comments)
+                        return res.render('animal', {
+                            data: animalFound,
+                            name: req.session.user,
+                            title: "PetAdoption",
+                            comments: comments
+                        });
+
+                    }
                 });
 
             }
@@ -67,41 +80,46 @@ exports.displayAnimal = function (req, res) {
 exports.fetchAllAnimals = function (req, res) {
 
     var animalData = req.body;
-    var filterData = { }
-       if(animalData.location != null && animalData.location != "")
-           filterData["town"] = animalData.location
-        if (animalData.animalType != null && animalData.animalType != "")
-            filterData["petType"] = animalData.animalType
+    var filterData = {}
+    if (animalData.location != null && animalData.location != "")
+        filterData["town"] = animalData.location
+    if (animalData.animalType != null && animalData.animalType != "")
+        filterData["petType"] = animalData.animalType
 
     if (animalData == null) {
         res.status(403).send('No data sent!')
     }
     console.log("inside fetch all animals", animalData)
-        Animal.find(filterData, '_id name animalImage town',  function (err, animals) {
-            if (err) {
-                return res.send(500, err);
-            }
-            console.log(animals)
-            return res.render('search', {
-                data: animals
-            });
-
+    Animal.find(filterData, '_id name animalImage town', function (err, animals) {
+        if (err) {
+            return res.send(500, err);
+        }
+        console.log("session user is", req.session.user)
+        return res.render('search', {
+            data: animals,
+            name: req.session.user,
+            title: "PetAdoption"
         });
+
+    });
 };
 
 exports.filterSearchAnimals = function (req, res) {
 
     var animalData = req.body;
-    console.log("??????",animalData)
+    console.log("??????", animalData)
     if (animalData == null) {
         res.status(403).send('No data sent!')
     }
     try {
-        Animal.find({town: animalData.location, petType: animalData.animalType}, '_id name animalImage town', function (err, animals) {
+        Animal.find({
+            town: animalData.location,
+            petType: animalData.animalType
+        }, '_id name animalImage town', function (err, animals) {
             if (err) {
                 return res.send(500, err);
             } else {
-                console.log(">>>>>>>>>>>>",animals)
+                console.log(">>>>>>>>>>>>", animals)
 
                 res.redirect('/search_view')
             }

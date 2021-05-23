@@ -1,12 +1,23 @@
-<header>
-    <div>
-        <nav>
-            <ul>
-                <li><a id="loginId"  onclick="popup_modal('loginModal');">Login</a></li>
-                <li><a id="registerId" onclick="popup_modal('registerModal');">Register</a></li>
-                <li><a id="user" type="text"></a></li>
-                <li><a id="logout" type="text"></a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<style>
+    .header nav ul li a {
+        display: block;
+        margin-right: 20px;
+        paddding: 0 8px;
+        font-family: Okra, Helvetica, sans-serif;
+        color: #f9f8f8;
+        font-size: 20px;
+    }
+</style>
+<nav>
+    <ul>
+
+        <% if (user) { %>
+        <li><a id="user">Hi, <%=user%></a></li>
+        <li><a id="logout">Logout</a></li>
+        <% } else { %>
+        <li><a id="loginId" onclick="popup_modal('loginModal');">Login</a></li>
+        <li><a id="registerId" onclick="popup_modal('registerModal');">Register</a></li>
+        <% } %>
+
+    </ul>
+</nav>

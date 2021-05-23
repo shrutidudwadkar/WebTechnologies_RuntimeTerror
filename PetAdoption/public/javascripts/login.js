@@ -23,10 +23,15 @@ function loginUser() {
 
             close_popup_modal('loginModal')
             popup_modal('successModal', "Login successful.")
+            window.location.href = "./welcome"
+
+            /*
             document.getElementById("user").innerHTML = "Hi, " + data.name;
             document.getElementById("logout").innerHTML = "Logout";
             document.getElementById("loginId").style.display = "none";
             document.getElementById("registerId").style.display = "none";
+
+             */
 
 
 

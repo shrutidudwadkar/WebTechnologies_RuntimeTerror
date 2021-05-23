@@ -4,12 +4,12 @@ var Schema = mongoose.Schema;
 
 var Comments = new Schema(
     {
-        animalId: {type: "Number", required: true},
+        animalId: {type: String, required: true},
         user: {type: String, required: true, max: 100},
         commentText: {type: String},
         commentImage: {type: String },
         dateOfComment: {type: Number},
-        isImage:{type:Boolean, required: true}
+        isImage:{type:Boolean, default:false}
 
     }
 );

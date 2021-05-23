@@ -67,7 +67,7 @@ exports.getUser = function (req, res) {
 
                 if (userData.password === userFound.password) {
                     res.setHeader('Content-Type', 'application/json');
-                    req.session.user = userFound
+                    req.session.user = userFound.firstname
                     //res.send(JSON.stringify(userFound));
                     res.send({name: userFound.firstname, title: "PetAdoption"})
                 } else {
