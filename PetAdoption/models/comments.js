@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var Comments = new Schema(
     {
         animalId: {type: String, required: true},
-        user: {type: String, required: true, max: 100},
+        user: {type: String, max: 100},
         commentText: {type: String},
         commentImage: {type: String },
         dateOfComment: {type: Number},

@@ -8,9 +8,11 @@
     <script src="/javascripts/welcome.js"></script>
     <script src="/javascripts/register.js"></script>
     <script src="/javascripts/login.js"></script>
+    <script src="/javascripts/comment.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <header>
     <div class="heading">
         <h3 id="welcomeId">Pet Adoption</h3>
@@ -23,16 +25,18 @@
     <div class="container1">
 
         <div class="left-column">
-            <form  id="commentForm" method="POST" action="/insertComment"  enctype="multipart/form-data">
-                <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
+
+            <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
             <canvas id="canvas">
-                <img type="image" alt="" id="animalImagePathId"
+                <img type="image" alt="" id="animalImagePathId" name="animalImagePathId"
                      src="<%= data.animalImage %>"/>
             </canvas>
             <div>
-                <input type="submit" class="button" name="image-comment" id="image-comment" value="Add as a comment"/>
+                <form  id="commentImageForm" method="POST">
+                <input type="submit" class="button"  name="image-comment" id="image-comment" value="Add as a comment"/>
             </div>
             </form>
+
         </div>
 
         <div class="right-column">
@@ -52,15 +56,26 @@
                         <div class="information">
                             <p1 id="user"><%= comments[i].user %> <span id="dateOfComment"><%= comments[i].dateOfComment %></span></p1>
                         </div>
+
+                        <% if (comments[i].isImage) {
+                            var target = new Image();
+                            target.src = comments[i].commentImage;
+
+                        %>
+                            <img src="<%comments[i].commentImage%>" width="60" height="40">
+                        <%} else { %>
                         <p2 id="textComment"><%= comments[i].commentText %></p2>
+                        <%}%>
                         <br>
                         <br>
                     </li>
                     <% } %>
 
                     <!—Add more comments in this section-->
+<!--
                     <form  id="commentForm" method="POST" action="/insertComment">
-                        <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
+-->
+                    <form  id="commentForm" method="POST">
 
                         <textarea placeholder="Please add your comment here" id="newComment" name="newComment"></textarea>
                         <div>
@@ -98,7 +113,7 @@
     var mDown = false;
     var lastX = 0, lastY = 0;
 
-    window.onload = function () {
+   // window.onload = function () {
 
         var img = new Image();
         img.src = imgSrc;
@@ -114,7 +129,7 @@
 
             ctx.drawImage(img, 0, 0);
         }
-    }
+   // }
 
     var posConv = function (x, y) {
         return {

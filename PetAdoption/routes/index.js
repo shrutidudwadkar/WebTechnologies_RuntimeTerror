@@ -55,7 +55,7 @@ router.post('/register', function(req, res) {
 /* Fetch the animal page */
 router.post('/animal', function(req, res, next) {
   //res.render('animal', { title: 'Animal Page'});
-  console.log("in index.js", req.body)
+  console.log("Route animal.js", req.body)
   animal.displayAnimal(req,res)
 });
 
@@ -76,8 +76,12 @@ router.post('/search_animal', function(req, res, next) {
 /* Insert the comment */
 
 router.post('/insertComment', function(req, res, next) {
+  console.log("Route to insertComment")
   comments.insertComment(req,res)
 });
+
+
+
 
 /*
 router.post('/search_animal', function(req, res, next) {

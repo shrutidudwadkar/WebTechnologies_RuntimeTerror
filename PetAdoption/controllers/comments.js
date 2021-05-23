@@ -17,13 +17,12 @@ exports.insertComment = function (req, res) {
             animalId: comment.animalId,
             user: req.session.user,
             commentText: comment.newComment,
-            //commentImage:".."+req.file.path.substr(req.file.path.indexOf("public")+6 , req.file.path.length),
+            commentImage: comment.dataUrl,
             dateOfComment: new Date().getFullYear(),
-            isImage: comment.isImage
+            isImage: comment.isImageComment
 
         });
-        console.log("?????/",JSON.stringify(comment))
-        console.log("?????/id",comment.data._id)
+
         userComment.save(function (err, results) {
             if (err) {
                 res.status(500).send('Invalid data!');
@@ -41,6 +40,8 @@ exports.insertComment = function (req, res) {
     }
 
 };
+
+
 /*
 exports.displayComments = function (req, res) {
 
