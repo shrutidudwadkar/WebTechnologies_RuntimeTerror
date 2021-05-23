@@ -51,6 +51,11 @@ router.post('/register', function(req, res) {
   user.registerUser(req,res);
 });
 
+/* Submit the adoption page */
+router.post('/adopt', function(req, res) {
+  animal.applyForAdoption(req,res);
+});
+
 
 /* Fetch the animal page */
 router.post('/animal', function(req, res, next) {

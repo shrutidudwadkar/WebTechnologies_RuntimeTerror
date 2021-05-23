@@ -129,3 +129,38 @@ exports.filterSearchAnimals = function (req, res) {
         res.status(500).send('error ' + e);
     }
 };
+
+exports.applyForAdoption = function (req, res) {
+
+    var adoptionData = req.body;
+    console.log("??????", adoptionData)
+    if (adoptionData == null) {
+        res.status(403).send('No data sent!')
+    }
+    try {
+        Animal.find({
+            _id: adoptionData._id
+        }, '_id name animalImage town', function (err, animal) {
+            if (err) {
+                return res.send(500, err);
+            } else {
+                console.log(">>>>>>>>>>>>", animal)
+                animal.isAdopted = adoptionData.isAdopted
+                animal.save(function (err, results) {
+                    if (err) {
+                        res.status(500).send('Error while adopting');
+                    } else {
+                        res.setHeader('Content-Type', 'application/json');
+                        res.send(JSON.stringify(animal));
+                        res.redirect('/animal_view')
+                    }
+                });
+            }
+        });
+
+    } catch (e) {
+        res.status(500).send('error ' + e);
+    }
+
+
+}

@@ -10,7 +10,8 @@ var Animal = new Schema(
         town: {type: String, required: true, max: 100},
         tags: {type: String, required: true, max: 100},
         isAdopted: {type: Boolean, default:false},
-        comments: {type: Array}
+        comments: {type: Array},
+        adoptedBy: {type: String}    
 
     }
 );

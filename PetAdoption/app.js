@@ -6,7 +6,7 @@ var logger = require('morgan');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var session=require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -35,6 +35,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.use(session({secret:'secret',cookie:{maxAge:6000}}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -53,5 +54,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = app;

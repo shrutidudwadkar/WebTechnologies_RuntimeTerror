@@ -29,7 +29,34 @@ function addAnimalInfo() {
 }
 
 function applyForAdoption(data) {
-    popup_modal('successModal', "Thank you for adopting.")
+    var animalid = data._id
+    var email = document.getElementById("email")
+    var isAdopted = true
+
+    var myForm = document.getElementById('adoptionForm');
+    var formData = new FormData(myForm);
+
+    console.log(formData)
+
+    $.ajax({
+        url:  '/adopt' ,
+        data: formData,
+        dataType: 'json',
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function (dataR) {
+            var ret = dataR;
+            close_popup_modal('adoptionModal')
+            popup_modal('successModal', "Thank you for adopting.")
+        },
+        error: function (xhr, status, error) {
+
+            alert('Error: ' + error.message);
+        }
+    });
+
+    return false;
 
 }
 
