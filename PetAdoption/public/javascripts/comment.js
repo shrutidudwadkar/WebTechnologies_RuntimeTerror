@@ -1,18 +1,42 @@
-/*
-function addImageComment() {
 
+function addImageComment() {
+    event.preventDefault();
     var canvas = document.getElementById('canvas');
-    var animalId = document.getElementById('animalId1');
+    var animalId = document.getElementById('animalId');
     var dataUrl = canvas.toDataURL();
     commentdata = {
         dataUrl: dataUrl,
         animalId: animalId,
         isImageComment: true
     }
-    //var target = new Image();
-    //target.src = dataUrl;
 
-    //document.getElementById('result').appendChild(target);
+
+    $.ajax({
+        url:  '/insertComment' ,
+        data: commentdata,
+        dataType: 'JSON',
+        type: 'POST',
+        success: function (dataR) {
+            console.log("done")
+        },
+        error: function (xhr, status, error) {
+
+            alert('Error: ' + error.message);
+        }
+    });
+
+}
+
+function addTextComment() {
+    event.preventDefault();
+    var newComment = document.getElementById('newComment');
+    var animalId = document.getElementById('animalId');
+    commentdata = {
+        newComment: newComment,
+        animalId: animalId,
+        isImageComment: false
+    }
+
     console.log(commentdata)
 
     $.ajax({
@@ -29,12 +53,12 @@ function addImageComment() {
         }
     });
 
-    event.preventDefault();
-
-
 }
-*/
+
+
+/*
 document.addEventListener("DOMContentLoaded", function () {
+    event.preventDefault();
     document.getElementById('image-comment').addEventListener('click', function () {
         var canvas = document.getElementById('canvas');
         var animalId = document.getElementById('animalId').value;
@@ -52,11 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         });
-    }, false);
+    }, true);
 });
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    event.preventDefault();
     document.getElementById('comment').addEventListener('click', function () {
         var animalId = document.getElementById('animalId').value;
         var newComment = document.getElementById('newComment').value;
@@ -73,5 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         });
-    }, false);
+    }, true);
 });
+
+
+
+ */

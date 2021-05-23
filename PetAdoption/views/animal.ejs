@@ -32,88 +32,85 @@
                      src="<%= data.animalImage %>"/>
             </canvas>
             <div>
-                <form  id="commentImageForm" method="POST">
-                <input type="submit" class="button"  name="image-comment" id="image-comment" value="Add as a comment"/>
+                <form id="commentImageForm" onsubmit="addImageComment()" method="POST">
+                    <input type="submit" class="button" name="image-comment" id="image-comment"
+                           value="Add as a comment"/>
+                </form>
             </div>
-            </form>
-
-        </div>
-
-        <div class="right-column">
-            <h1><%= data.name %></h1>
-            <p><%= data.town %></p>
-            <p><%= data.petType %></p>
-
-            <input type="submit" class="button" name="adoptBtn" id="adoptBtn" value="Apply for adoption"
-                   onclick="popup_modal('adoptionModal');"/>
+            </div>
 
             <div class="right-column">
-                <ul class="comment-section">
+                <h1><%= data.name %></h1>
+                <p><%= data.town %></p>
+                <p><%= data.petType %></p>
 
-                    <h1>Comments</h1>
-                    <%  for(var i = 0; i < comments.length; i++) { %>
-                    <li class="comments">
-                        <div class="information">
-                            <p1 id="user"><%= comments[i].user %> <span id="dateOfComment"><%= comments[i].dateOfComment %></span></p1>
-                        </div>
+                <input type="submit" class="button" name="adoptBtn" id="adoptBtn" value="Apply for adoption"
+                       onclick="popup_modal('adoptionModal');"/>
 
-                        <% if (comments[i].isImage) {
-                            var target = new Image();
-                            target.src = comments[i].commentImage;
+                <div class="right-column">
+                    <ul class="comment-section">
 
-                        %>
-                            <img src="<%comments[i].commentImage%>" width="60" height="40">
-                        <%} else { %>
-                        <p2 id="textComment"><%= comments[i].commentText %></p2>
-                        <%}%>
-                        <br>
-                        <br>
-                    </li>
-                    <% } %>
+                        <h1>Comments</h1>
+                        <% for(var i = 0; i < comments.length; i++) { %>
+                            <li class="comments">
+                                <div class="information">
+                                    <p1 id="user"><%= comments[i].user %> <span
+                                                id="dateOfComment"><%= comments[i].dateOfComment %></span></p1>
+                                </div>
 
-                    <!—Add more comments in this section-->
-<!--
-                    <form  id="commentForm" method="POST" action="/insertComment">
--->
-                    <form  id="commentForm" method="POST">
-                        <input type="hidden" id="animalId" name="animalId" value="<%=data._id%>">
-                        <textarea placeholder="Please add your comment here" id="newComment" name="newComment"></textarea>
-                        <div>
-                            <input type="submit" class="button" name="comment" id="comment" value="Submit"/>
+                                <% if (comments[i].isImage) {
+                                    var target = new Image();
+                                    target.src = comments[i].commentImage;
+                                %>
+                                <img src="<% comments[i].commentImage %>" width="60" height="40">
+                                <% } else { %>
+                                    <p2 id="textComment"><%= comments[i].commentText %></p2>
+                                <% } %>
+                                <br>
+                                <br>
+                            </li>
+                        <% } %>
 
-                        </div>
-                    </form>
-                </ul>
+                        <!—Insert comment section-->
+
+                        <form id="commentForm" method="POST" action="/insertComment">
+                            <input type="hidden" id="animalId" name="animalId" value="<%= data._id %>">
+                            <textarea placeholder="Please add your comment here" id="newComment"
+                                      name="newComment"></textarea>
+                            <div>
+                                <input type="submit" class="button" name="comment" id="comment" value="Submit"/>
+
+                            </div>
+                        </form>
+                    </ul>
+                </div>
             </div>
         </div>
+        <!-- The Log in modal -->
+        <%- include partials/login.ejs %>
+
+        <!--The registration popup modal -->
+        <%- include partials/registration.ejs %>
+
+
+        <!-- Success modal -->
+        <%- include partials/success.ejs %>
+
+        <!-- Adoption form modal -->
+        <%- include partials/adoption.ejs %>
     </div>
-    <!-- The Log in modal -->
-    <%- include partials/login.ejs %>
-
-    <!--The registration popup modal -->
-    <%- include partials/registration.ejs %>
-
-    <!-- Add animal modal -->
-    <%- include partials/addanimal.ejs %>
-
-    <!-- Success modal -->
-    <%- include partials/success.ejs %>
-
-    <!-- Adoption form modal -->
-    <%- include partials/adoption.ejs %>
-</div>
 
 
-<script>
-    var canvas = document.getElementById('canvas');
-    var imgSrc = document.getElementById('animalImagePathId').src
-    var ctx = canvas.getContext('2d');
-    var cnvDispSizeW = 400;
-    var cnvDispSizeH = 500;
-    var mDown = false;
-    var lastX = 0, lastY = 0;
+    <script>
+        var canvas = document.getElementById('canvas');
+        var imgSrc = document.getElementById('animalImagePathId').src
+        var ctx = canvas.getContext('2d');
+        var cnvDispSizeW = 400;
+        var cnvDispSizeH = 500;
+        var mDown = false;
+        var lastX = 0, lastY = 0;
 
-   // window.onload = function () {
+        // window.onload = function () {
 
         var img = new Image();
         img.src = imgSrc;
@@ -129,45 +126,46 @@
 
             ctx.drawImage(img, 0, 0);
         }
-   // }
 
-    var posConv = function (x, y) {
-        return {
-            x: canvas.width * x / cnvDispSizeW,
-            y: canvas.height * y / cnvDispSizeH
+        // }
+
+        var posConv = function (x, y) {
+            return {
+                x: canvas.width * x / cnvDispSizeW,
+                y: canvas.height * y / cnvDispSizeH
+            }
+        };
+        canvas.onmousedown = function (evt) {
+            mDown = true;
+            var mPos = posConv(evt.offsetX, evt.offsetY);
+            draw(mPos.x, mPos.y);
         }
-    };
-    canvas.onmousedown = function (evt) {
-        mDown = true;
-        var mPos = posConv(evt.offsetX, evt.offsetY);
-        draw(mPos.x, mPos.y);
-    }
-    canvas.onmouseup = function (evt) {
-        mDown = false;
-        lastX = lastY = 0;
-    }
-    canvas.onmousemove = function (evt) {
-        if (!mDown) return;
-        var mPos = posConv(evt.offsetX, evt.offsetY);
-        draw(mPos.x, mPos.y);
-    }
-
-    function draw(x, y) {
-        if (mDown && lastX) {
-            ctx.beginPath();
-            ctx.strokeStyle = 'red';
-            ctx.lineWidth = 10;
-            ctx.lineJoin = 'round';
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(x, y);
-            ctx.closePath();
-            ctx.stroke();
+        canvas.onmouseup = function (evt) {
+            mDown = false;
+            lastX = lastY = 0;
         }
-        lastX = x;
-        lastY = y;
-    }
+        canvas.onmousemove = function (evt) {
+            if (!mDown) return;
+            var mPos = posConv(evt.offsetX, evt.offsetY);
+            draw(mPos.x, mPos.y);
+        }
 
-</script>
+        function draw(x, y) {
+            if (mDown && lastX) {
+                ctx.beginPath();
+                ctx.strokeStyle = 'red';
+                ctx.lineWidth = 10;
+                ctx.lineJoin = 'round';
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(x, y);
+                ctx.closePath();
+                ctx.stroke();
+            }
+            lastX = x;
+            lastY = y;
+        }
+
+    </script>
 
 </body>
 </html>

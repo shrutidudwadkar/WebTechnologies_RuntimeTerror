@@ -56,25 +56,25 @@ router.post('/adopt', function(req, res) {
   animal.applyForAdoption(req,res);
 });
 
-
-/* Fetch the animal page */
-router.post('/animal', function(req, res, next) {
-  //res.render('animal', { title: 'Animal Page'});
-  console.log("Route animal.js", req.body)
-  animal.displayAnimal(req,res)
-});
-
 /* Add animal */
 router.post('/addAnimal', upload.single('animalImage'), function(req, res) {
   console.log(req);
   animal.insertAnimal(req, res)
 });
 
+
 /* Fetch the search page */
 router.post('/search_animal', function(req, res, next) {
   //res.render('search', { title: 'Search Page'});
   console.log("test get", req.body)
   animal.fetchAllAnimals(req, res);
+});
+
+/* Fetch the animal page */
+router.post('/animal', function(req, res, next) {
+  //res.render('animal', { title: 'Animal Page'});
+  console.log("Route animal.js", req.body)
+  animal.displayAnimal(req,res)
 });
 
 
@@ -86,6 +86,11 @@ router.post('/insertComment', function(req, res, next) {
 });
 
 
+/* logout the session*/
+router.post('/logout', function(req, res, next) {
+  console.log("Logout session")
+  req.session.destroy()
+});
 
 
 /*

@@ -46,6 +46,7 @@ exports.displayAnimal = function (req, res) {
     if (animalData == null) {
         res.status(403).send('No data sent!')
     }
+
     try {
         Animal.findById({_id: animalData.animalId}, '_id isAdopted comments name animalImage petType town tags', function (err, animalFound) {
             if (err) {
@@ -136,25 +137,24 @@ exports.applyForAdoption = function (req, res) {
     console.log("??????", adoptionData)
     if (adoptionData == null) {
         res.status(403).send('No data sent!')
+
+    }
+    updateinfo = {
+        userEmail: adoptionData.email,
+        isAdopted: true
     }
     try {
-        Animal.find({
-            _id: adoptionData._id
-        }, '_id name animalImage town', function (err, animal) {
+        Animal.findByIdAndUpdate({
+            _id: adoptionData.animalId
+        }, updateinfo, function (err, animal) {
             if (err) {
                 return res.send(500, err);
             } else {
-                console.log(">>>>>>>>>>>>", animal)
-                animal.isAdopted = adoptionData.isAdopted
-                animal.save(function (err, results) {
-                    if (err) {
-                        res.status(500).send('Error while adopting');
-                    } else {
-                        res.setHeader('Content-Type', 'application/json');
-                        res.send(JSON.stringify(animal));
-                        res.redirect('/animal_view')
-                    }
-                });
+                res.setHeader('Content-Type', 'application/json');
+
+                res.send(JSON.stringify(animal));
+
+
             }
         });
 

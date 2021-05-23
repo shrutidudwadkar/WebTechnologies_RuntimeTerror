@@ -11,7 +11,8 @@ var Animal = new Schema(
         tags: {type: String, required: true, max: 100},
         isAdopted: {type: Boolean, default:false},
         comments: {type: Array},
-        adoptedBy: {type: String}    
+        adoptedBy: {type: String} ,
+        userEmail: {type:String}
 
     }
 );

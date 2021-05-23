@@ -60,23 +60,32 @@ exports.getUser = function (req, res) {
         res.status(403).send('No data sent!')
     }
     try {
-        User.findOne({email: userData.email}, '_id password email firstname', function (err, userFound) {
-            if (err) {
-                return res.send(500, err);
-            } else {
+        //is admin user
+        if(userData.email === 'admin' && userData.password === 'admin') {
+            res.setHeader('Content-Type', 'application/json');
+            req.session.user = userData.email
+            res.send({name: userData.email, title: "PetAdoption"})
+        } else {
 
-                if (userData.password === userFound.password) {
-                    res.setHeader('Content-Type', 'application/json');
-                    req.session.user = userFound.firstname
-                    //res.send(JSON.stringify(userFound));
-                    res.send({name: userFound.firstname, title: "PetAdoption"})
+            User.findOne({email: userData.email}, '_id password email firstname', function (err, userFound) {
+                if (err) {
+                    return res.send(500, err);
                 } else {
-                    console.log("error")
-                    res.status(401).send("Invalid username or password")
-                }
 
-            }
-        });
+                    if (userData.password === userFound.password) {
+                        res.setHeader('Content-Type', 'application/json');
+                        req.session.user = userFound.firstname
+
+                        //res.send(JSON.stringify(userFound));
+                        res.send({name: userFound.firstname, title: "PetAdoption"})
+                    } else {
+                        console.log("error")
+                        res.status(401).send("Invalid username or password")
+                    }
+
+                }
+            });
+        }
     } catch (e) {
         res.status(500).send('error ' + e);
     }

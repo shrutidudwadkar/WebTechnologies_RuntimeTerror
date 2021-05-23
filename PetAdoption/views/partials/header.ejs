@@ -10,13 +10,17 @@
 </style>
 <nav>
     <ul>
-
         <% if (user) { %>
-        <li><a id="user">Hi, <%=user%></a></li>
-        <li><a id="logout">Logout</a></li>
+            <li><a id="user">Hi, <%= user %></a></li>
+                <% if(user === 'admin') { %>
+                    <li><a id="addAnimalId" onclick="popup_modal('addAnimalModal');">Add Animal</a></li>
+                <%}%>
+                    <li><a id="logout" action="/logout">Logout</a></li>
+
         <% } else { %>
-        <li><a id="loginId" onclick="popup_modal('loginModal');">Login</a></li>
-        <li><a id="registerId" onclick="popup_modal('registerModal');">Register</a></li>
+
+            <li><a id="loginId" onclick="popup_modal('loginModal');">Login</a></li>
+            <li><a id="registerId" onclick="popup_modal('registerModal');">Register</a></li>
         <% } %>
 
     </ul>

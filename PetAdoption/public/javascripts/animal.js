@@ -28,23 +28,24 @@ function addAnimalInfo() {
     return false;
 }
 
-function applyForAdoption(data) {
-    var animalid = data._id
-    var email = document.getElementById("email")
-    var isAdopted = true
+function applyForAdoption() {
+    event.preventDefault();
+    var animalId = document.getElementById('animalId').value
+    var email = document.getElementById("email").value
 
-    var myForm = document.getElementById('adoptionForm');
-    var formData = new FormData(myForm);
+     info = {
+         animalId: animalId,
+         email: email,
+         isAdopted: true
+     }
 
-    console.log(formData)
 
     $.ajax({
         url:  '/adopt' ,
-        data: formData,
+        data: info,
         dataType: 'json',
         type: 'POST',
-        processData: false,
-        contentType: false,
+
         success: function (dataR) {
             var ret = dataR;
             close_popup_modal('adoptionModal')
