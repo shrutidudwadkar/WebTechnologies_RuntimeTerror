@@ -12,7 +12,7 @@
     <ul>
         <% if (user) { %>
             <li><a id="user">Hi, <%= user %></a></li>
-                <% if(user === 'admin@admin') { %>
+                <% if(user === 'Admin') { %>
                     <li><a id="addAnimalId" onclick="popup_modal('addAnimalModal');">Add Animal</a></li>
                 <%}%>
                     <li><a id="logout" action="/logout">Logout</a></li>
